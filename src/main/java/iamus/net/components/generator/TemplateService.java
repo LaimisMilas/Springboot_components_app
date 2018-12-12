@@ -6,8 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import iamus.net.components.component.Component;
-import iamus.net.components.property.Property;
 
 
 
