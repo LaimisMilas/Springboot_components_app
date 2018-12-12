@@ -1,18 +1,13 @@
 package iamus.net.components.generator;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
 
-import iamus.net.components.Utils;
-import iamus.net.components.component.Component;
+
 
 @Entity
 public class Template {
