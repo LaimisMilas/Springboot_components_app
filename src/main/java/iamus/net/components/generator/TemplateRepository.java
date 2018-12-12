@@ -21,9 +21,4 @@ public interface TemplateRepository extends CrudRepository <Template, String> {
 	Optional<Template> deleteById(int id);
 
 	
-		@Query(value = "FROM Template c WHERE \n" +
-		    "c.name LIKE %:searchTerm% " )
-		    List<Template> findBySearchTermNative(@Param("searchTerm") String searchTerm);
-		void save(Component component);
-	
 }

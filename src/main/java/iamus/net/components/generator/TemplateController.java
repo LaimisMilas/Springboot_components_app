@@ -73,10 +73,10 @@ import iamus.net.components.component.Component;
 		public Optional<Template> getTemplate(@PathVariable int id) {
 			return TemplateService.getTemplate(id);
 		}
-		@RequestMapping("/Templates/search={id}")
-		public List<Template> getTemplates(@PathVariable String id) {
-			return TemplateService.getTemplates(id);
-		}
+//		@RequestMapping("/Templates/search={id}")
+//		public List<Template> getTemplates(@PathVariable String id) {
+//			return TemplateService.getTemplates(id);
+//		}
 		
 		@RequestMapping(method=RequestMethod.POST, value="/Templates", consumes = MediaType.APPLICATION_JSON_VALUE)
 		public void addTemplate(@RequestBody Template template, @PathVariable String name, @PathVariable int id) {

@@ -91,12 +91,6 @@ public class Component {
 		this.name = name;
 	}
 	
-	public Template getTemplate() {
-		return template;
-	}
-	public void setTemplate(Template template) {
-		this.template = template;
-	}
 			public List<Property> getProperties() {
 					List<Property> newProperties = new ArrayList<>();
 					 this.properties.forEach(val -> {

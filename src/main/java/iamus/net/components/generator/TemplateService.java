@@ -25,13 +25,6 @@ public class TemplateService {
 		 return Templates;
 	}
 	
-		public List<Template> getTemplates(String id) {
-		
-		List <Template> Templates = new ArrayList<>();
-		 TemplateRepository.findBySearchTermNative(id)
-		.forEach(Templates::add);
-		return Templates;
-	}
 	
 	
 	public Optional<Template> getTemplate(int id) {

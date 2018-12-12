@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Type;
+
 import iamus.net.components.Utils;
 import iamus.net.components.component.Component;
 
@@ -19,9 +21,11 @@ public class Template {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	@OneToOne
-	Component component;
+	private Component component;
+	@Type(type="text")
 	String componentTemplate;
-	String controllerTemplate = "package iamus.net.components.generated."+component.getName()+";\r\n" + 
+	@Type(type="text")
+	String controllerTemplate;/* = "package iamus.net.components.generated."+component.getName()+";\r\n" + 
 			"\r\n" + 
 			"import java.util.ArrayList;\r\n" + 
 			"import java.util.List;\r\n" + 
@@ -44,8 +48,9 @@ public class Template {
 			"	\r\n" + 
 			"	@Id\r\n" + 
 			"	@GeneratedValue(strategy=GenerationType.IDENTITY)\r\n" + 
-			"	private int id;\r\n";
-	String repositoryTemplate = "package iamus.net.components.generated."+component.getName()+";\r\n" + 
+			"	private int id;\r\n"; */
+	@Type(type="text")
+	String repositoryTemplate; /*= "package iamus.net.components.generated."+component.getName()+";\r\n" + 
 			"\r\n" + 
 			"import java.util.List;\r\n" + 
 			"import java.util.Optional;\r\n" + 
@@ -70,8 +75,9 @@ public class Template {
 			"		    \"c.name LIKE %:searchTerm% \" )\r\n" + 
 			"		    List<"+Utils.nameToUpperCase(component.getName())+"> findBySearchTermNative(@Param(\"searchTerm\") String searchTerm);\r\n" + 
 			"}\r\n" + 
-			"";
-	String serviceTemplate = "package iamus.net.components.generated."+component.getName()+";\r\n" + 
+			"";*/
+	@Type(type="text")
+	String serviceTemplate;/* = "package iamus.net.components.generated."+component.getName()+";\r\n" + 
 			"import java.util.ArrayList;\r\n" + 
 			"import java.util.List;\r\n" + 
 			"import java.util.Optional;\r\n" + 
@@ -126,7 +132,7 @@ public class Template {
 			"	}\r\n" + 
 			"	\r\n" + 
 			"}\r\n" + 
-			"";
+			"";*/
 	
 	
 	public int getId() {
@@ -180,17 +186,19 @@ public class Template {
 	public Template() {
 		
 	}
-	
-	public Template(int id, String componentTemplate, String controllerTemplate, String repositoryTemplate,
-			String serviceTemplate, Component component) {
+
+	public Template(int id, Component component, String componentTemplate, String controllerTemplate,
+			String repositoryTemplate, String serviceTemplate) {
 		super();
 		this.id = id;
+		this.component = component;
 		this.componentTemplate = componentTemplate;
 		this.controllerTemplate = controllerTemplate;
 		this.repositoryTemplate = repositoryTemplate;
 		this.serviceTemplate = serviceTemplate;
-		this.component = component;
 	}
+	
+	
 
 	
 }
