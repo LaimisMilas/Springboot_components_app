@@ -20,16 +20,8 @@ public class Template {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
-	@OneToOne
-	private Component component;
 	@Type(type="text")
-	String componentTemplate;
-	@Type(type="text")
-	String controllerTemplate;
-	@Type(type="text")
-	String repositoryTemplate;
-	@Type(type="text")
-	String serviceTemplate;
+	String text;
 	
 	
 	public int getId() {
@@ -40,62 +32,23 @@ public class Template {
 		this.id = id;
 	}
 
-	public String getComponentTemplate() {
-		return componentTemplate;
+	public String getText() {
+		return text;
 	}
 
-	public void setComponentTemplate(String componentTemplate) {
-		this.componentTemplate = componentTemplate;
-	}
-
-	public String getControllerTemplate() {
-		return controllerTemplate;
-	}
-
-	public void setControllerTemplate(String controllerTemplate) {
-		this.controllerTemplate = controllerTemplate;
-	}
-
-	public String getRepositoryTemplate() {
-		return repositoryTemplate;
-	}
-
-	public void setRepositoryTemplate(String repositoryTemplate) {
-		this.repositoryTemplate = repositoryTemplate;
-	}
-
-	public String getServiceTemplate() {
-		return serviceTemplate;
-	}
-
-	public void setServiceTemplate(String serviceTemplate) {
-		this.serviceTemplate = serviceTemplate;
-	}
-	
-	public Component getComponent() {
-		return component;
-	}
-	
-	public void setComponent(Component component) {
-		this.component = component;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Template() {
 		
 	}
 
-	public Template(int id, Component component, String componentTemplate, String controllerTemplate,
-			String repositoryTemplate, String serviceTemplate) {
+	public Template(int id, String text) {
 		super();
 		this.id = id;
-		this.component = component;
-		this.componentTemplate = componentTemplate;
-		this.controllerTemplate = controllerTemplate;
-		this.repositoryTemplate = repositoryTemplate;
-		this.serviceTemplate = serviceTemplate;
+		this.text = text;
 	}
 	
-	
-
 	
 }

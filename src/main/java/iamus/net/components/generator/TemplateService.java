@@ -26,20 +26,8 @@ public class TemplateService {
 	}
 	
 	
-	
 	public Optional<Template> getTemplate(int id) {
 		return TemplateRepository.findById(id);
-	}
-	
-
-	public void createTemplate(Component component) {
-		Template template = new Template();
-		template.setComponentTemplate(
-				component.propertiesToString() +
-				component.GettersSettersToString() +
-				component.ConstructorToString()
-				);
-		TemplateRepository.save(template);
 	}
 
 	public void updateTemplate(Template Template, String id) {
