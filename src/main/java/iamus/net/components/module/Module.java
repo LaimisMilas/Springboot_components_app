@@ -13,11 +13,12 @@ import iamus.net.components.generator.Template;
 
 @Entity
 public class Module {
-
-	String name; 
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
+	String name; 
+	
 	@OneToMany
 	List<Template> templates = new ArrayList<>();
 	
