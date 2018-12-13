@@ -78,7 +78,7 @@ import iamus.net.components.component.Component;
 //		}
 		
 		@RequestMapping(method=RequestMethod.POST, value="/Templates", consumes = MediaType.APPLICATION_JSON_VALUE)
-		public void addTemplate(@RequestBody Template template, @PathVariable String name, @PathVariable int id) {
+		public void addTemplate(@RequestBody Template template) {
 			TemplateService.createTemplate(template);
 		}
 		

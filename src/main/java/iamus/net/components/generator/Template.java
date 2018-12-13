@@ -15,8 +15,10 @@ public class Template {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
+	String name;
 	@Type(type="text")
 	String text;
+	
 	
 	
 	public int getId() {
@@ -25,6 +27,14 @@ public class Template {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getText() {
@@ -39,9 +49,10 @@ public class Template {
 		
 	}
 
-	public Template(int id, String text) {
+	public Template(int id,String name, String text) {
 		super();
 		this.id = id;
+		this.name = name;
 		this.text = text;
 	}
 	

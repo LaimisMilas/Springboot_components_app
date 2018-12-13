@@ -41,6 +41,10 @@ public class Module {
 		this.templates = templates;
 	}
 	
+		public Module () {
+		
+	}
+	
 	public Module(String name, int id, List<Template> templates) {
 		super();
 		this.name = name;

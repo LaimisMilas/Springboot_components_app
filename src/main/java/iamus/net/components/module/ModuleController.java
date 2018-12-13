@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 		}
 		
 		@RequestMapping(method=RequestMethod.POST, value="/Modules", consumes = MediaType.APPLICATION_JSON_VALUE)
-		public void addModule(@RequestBody Module module, @PathVariable String name, @PathVariable int id) {
+		public void addModule(@RequestBody Module module) {
 			ModuleService.createModule(module);
 		}
 		
