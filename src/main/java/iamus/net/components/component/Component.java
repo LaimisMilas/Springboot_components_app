@@ -3,8 +3,9 @@ package iamus.net.components.component;
 import java.util.ArrayList;
 import java.util.List;
 
-import iamus.net.components.generator.Template;
 import iamus.net.components.property.Property;
+import iamus.net.components.template.Template;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,6 @@ public class Component {
 
 	@ManyToMany(targetEntity=Property.class)
 	private List<Property> properties = new ArrayList<>();
-	
 	
 	
 	public String propertiesToString() {

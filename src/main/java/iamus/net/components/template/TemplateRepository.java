@@ -1,11 +1,11 @@
-package iamus.net.components.generator;
+package iamus.net.components.template;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.transaction.annotation.Transactional;
 
-import iamus.net.components.generator.Template;
+import iamus.net.components.template.Template;
 
 
 

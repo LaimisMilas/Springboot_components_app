@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import iamus.net.components.generator.Template;
+import iamus.net.components.template.Template;
 
 @Entity
 public class Module {

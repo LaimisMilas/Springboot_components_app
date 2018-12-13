@@ -1,4 +1,4 @@
-package iamus.net.components.generator;
+package iamus.net.components.template;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
