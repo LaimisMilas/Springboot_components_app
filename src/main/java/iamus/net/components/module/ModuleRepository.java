@@ -1,4 +1,4 @@
-package iamus.net.components.generator;
+package iamus.net.components.module;
 
 import java.util.Optional;
 
@@ -9,11 +9,11 @@ import iamus.net.components.generator.Template;
 
 
 
-public interface TemplateRepository extends CrudRepository <Template, String> {
+public interface ModuleRepository extends CrudRepository <Module, String> {
 
-	Optional<Template> findById(int id);
+	Optional<Module> findById(int id);
 	@Transactional
-	Optional<Template> deleteById(int id);
+	Optional<Module> deleteById(int id);
 
 	
 }

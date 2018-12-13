@@ -61,7 +61,6 @@ import iamus.net.components.component.Component;
 				e.printStackTrace();
 			}
 
-			TemplateService.createTemplate(component);
 		}
 		
 		@RequestMapping("/Templates")
