@@ -8,7 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import iamus.net.components.component.Component;
 import iamus.net.components.template.Template;
 
 @Entity
@@ -21,6 +26,9 @@ public class Module {
 	
 	@OneToMany
 	List<Template> templates = new ArrayList<>();
+	
+	@OneToOne
+	public Component component;
 	
 	public String getName() {
 		return name;
@@ -41,15 +49,27 @@ public class Module {
 		this.templates = templates;
 	}
 	
+	public Component getComponent() {
+		return component;
+//		 Component newComponent = new Component();
+//		 newComponent.setId(this.component.getId());
+//		 newComponent.setName(this.component.getName());
+//		 newComponent.setProperties(this.component.getProperties());
+//		 return newComponent;
+	}
+	public void setComponent(Component component) {
+		this.component = component;
+	}
 		public Module () {
 		
 	}
 	
-	public Module(String name, int id, List<Template> templates) {
+	public Module(String name, int id, List<Template> templates, Component component) {
 		super();
 		this.name = name;
 		this.id = id;
 		this.templates = templates;
+		this.component = component;
 	}
 	
 	
