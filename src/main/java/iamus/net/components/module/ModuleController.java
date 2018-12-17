@@ -50,5 +50,9 @@ import org.springframework.web.bind.annotation.RestController;
 		public void deleteModule(@PathVariable int id) {
 			ModuleService.deleteModule(id);
 		}
-	
+		
+		@RequestMapping(method=RequestMethod.POST, value="/Modules/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public void generateModule(@RequestBody Module module) {
+			ModuleService.generateModule(module);
+		}
 }
