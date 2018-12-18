@@ -57,5 +57,5 @@ public class Component {
 		this.name = name;
 		this.properties = properties;
 	}
-
+	
 }

@@ -35,35 +35,36 @@ INSERT INTO `component` (`id`, `name`) VALUES
 
 -- Dumping structure for table springboot.component_properties
 CREATE TABLE IF NOT EXISTS `component_properties` (
-  `components_id` int(11) NOT NULL,
+  `component_id` int(11) NOT NULL,
   `properties_id` int(11) NOT NULL,
   KEY `FKlpf8vglew3prujw5egebkbetp` (`properties_id`),
-  KEY `FKm80vuhku7x4ioy7n33uga4koc` (`components_id`)
+  KEY `FKs1pywahb3ewah7f3wvg2flyfg` (`component_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table springboot.component_properties: 9 rows
+-- Dumping data for table springboot.component_properties: 5 rows
 /*!40000 ALTER TABLE `component_properties` DISABLE KEYS */;
-INSERT INTO `component_properties` (`components_id`, `properties_id`) VALUES
-	(1, 6),
+INSERT INTO `component_properties` (`component_id`, `properties_id`) VALUES
 	(1, 1),
-	(13, 10),
+	(13, 6),
 	(13, 7),
-	(13, 1),
-	(14, 12),
-	(14, 13),
-	(14, 14),
-	(14, 15);
+	(13, 8),
+	(13, 10);
 /*!40000 ALTER TABLE `component_properties` ENABLE KEYS */;
 
 -- Dumping structure for table springboot.module
 CREATE TABLE IF NOT EXISTS `module` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `component_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKsrqenqtkgrpougfx43u87d24k` (`component_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table springboot.module: 0 rows
+-- Dumping data for table springboot.module: 2 rows
 /*!40000 ALTER TABLE `module` DISABLE KEYS */;
+INSERT INTO `module` (`id`, `name`, `component_id`) VALUES
+	(2, 'Computer', 13),
+	(3, 'ComputerController', 13);
 /*!40000 ALTER TABLE `module` ENABLE KEYS */;
 
 -- Dumping structure for table springboot.module_templates
@@ -74,8 +75,10 @@ CREATE TABLE IF NOT EXISTS `module_templates` (
   KEY `FKjk393phxhmnk69nen42wy2jq6` (`module_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- Dumping data for table springboot.module_templates: 0 rows
+-- Dumping data for table springboot.module_templates: 1 rows
 /*!40000 ALTER TABLE `module_templates` DISABLE KEYS */;
+INSERT INTO `module_templates` (`module_id`, `templates_id`) VALUES
+	(2, 2);
 /*!40000 ALTER TABLE `module_templates` ENABLE KEYS */;
 
 -- Dumping structure for table springboot.property
@@ -105,11 +108,14 @@ INSERT INTO `property` (`id`, `name`, `type`) VALUES
 CREATE TABLE IF NOT EXISTS `template` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` longtext,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table springboot.template: 0 rows
+-- Dumping data for table springboot.template: 1 rows
 /*!40000 ALTER TABLE `template` DISABLE KEYS */;
+INSERT INTO `template` (`id`, `text`, `name`) VALUES
+	(2, 'package iamus.net.components.component;\n\nimport java.util.ArrayList;\nimport java.util.List;\n\nimport iamus.net.components.property.Property;\n\nimport javax.persistence.Entity;\nimport javax.persistence.GeneratedValue;\nimport javax.persistence.GenerationType;\nimport javax.persistence.Id;\nimport javax.persistence.ManyToMany;\n\n\n@Entity\npublic class Component {\n\n	@Id\n	@GeneratedValue(strategy = GenerationType.IDENTITY)\n	private int id;\n	private String name;\n\n	@ManyToMany(targetEntity = Property.class)\n	private List<Property> properties = new ArrayList<>();\n\n	public int getId() {\n		return id;\n	}\n\n	public void setId(int id) {\n		this.id = id;\n	}\n\n	public String getName() {\n		return name;\n	}\n\n	public void setName(String name) {\n		this.name = name;\n	}\n\n	public List<Property> getProperties() {\n		return properties;\n	}\n\n	public void setProperties(List<Property> properties) {\n		this.properties = properties;\n	}\n\n	public Component() {\n\n	}\n\n	public Component(int id, String name, List<Property> properties) {\n		super();\n		this.id = id;\n		this.name = name;\n		this.properties = properties;\n	}\n\n}\n', 'ComponentTemplate');
 /*!40000 ALTER TABLE `template` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

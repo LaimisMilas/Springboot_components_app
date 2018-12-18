@@ -28,40 +28,6 @@ import iamus.net.components.component.Component;
 		private TemplateService TemplateService;
 		
 		
-		@RequestMapping(method=RequestMethod.POST,  value="/components/{id}/{name}", consumes = MediaType.APPLICATION_JSON_VALUE)
-		public void generateFiles(@RequestBody Component component, @PathVariable String name, @PathVariable int id)	{
-
-			String path = "C:\\Users\\Inspiron\\Desktop\\spring-boot\\demo\\src\\main\\java\\iamus\\net\\components\\generated";
-			
-			new File(path).mkdirs();
-			new File(path+"\\"+name).mkdirs();
-		
-			File file1 = new File(path+"\\"+name+"\\"+name+".java");
-			try {
-				file1.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			File file2 = new File(path+"\\"+name+"\\"+name+"Controller.java");
-			try {
-				file2.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			File file3 = new File(path+"\\"+name+"\\"+name+"Repository.java");
-			try {
-				file3.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			File file4 = new File(path+"\\"+name+"\\"+name+"Service.java");
-			try {
-				file4.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-
-		}
 		
 		@RequestMapping("/Templates")
 		public List<Template> getAllTemplates() {

@@ -47,6 +47,10 @@ public class Property {
 		this.name = name;
 		this.type = type;
 	}
+	@Override
+	public String toString() {
+		return "\t"+type+" "+name+"\n";
+	}
 	
 	
 	
