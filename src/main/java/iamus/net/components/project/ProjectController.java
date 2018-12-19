@@ -51,8 +51,8 @@ import org.springframework.web.bind.annotation.RestController;
 			ProjectService.deleteProject(id);
 		}
 		
-		@RequestMapping(method=RequestMethod.POST, value="/projects", consumes = MediaType.APPLICATION_JSON_VALUE)
-		public void generateProject(@RequestBody Project project) {
+		@RequestMapping(method=RequestMethod.POST, value="/projects/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public void generateProject(@RequestBody Project project, @PathVariable String id) {
 			ProjectService.generateProject(project);
 		}
 		
