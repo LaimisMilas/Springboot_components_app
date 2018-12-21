@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 
 
@@ -27,7 +27,7 @@ public class Module {
 	@ManyToMany(targetEntity = Template.class)
 	List<Template> templates = new ArrayList<>();
 	
-	@OneToOne
+	@ManyToOne
 	public Component component;
 	
 	public String getName() {
