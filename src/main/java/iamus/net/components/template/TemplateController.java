@@ -1,7 +1,5 @@
 package iamus.net.components.template;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import iamus.net.components.component.Component;
 
 	@CrossOrigin
 	@RestController
@@ -38,10 +35,6 @@ import iamus.net.components.component.Component;
 		public Optional<Template> getTemplate(@PathVariable int id) {
 			return TemplateService.getTemplate(id);
 		}
-//		@RequestMapping("/Templates/search={id}")
-//		public List<Template> getTemplates(@PathVariable String id) {
-//			return TemplateService.getTemplates(id);
-//		}
 		
 		@RequestMapping(method=RequestMethod.POST, value="/Templates", consumes = MediaType.APPLICATION_JSON_VALUE)
 		public void addTemplate(@RequestBody Template template) {
