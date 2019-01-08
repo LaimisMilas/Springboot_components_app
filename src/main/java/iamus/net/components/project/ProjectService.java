@@ -4,16 +4,21 @@ import java.io.File;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import java.io.StringWriter;
 import org.apache.velocity.VelocityContext;
+import org.apache.el.parser.SimpleNode;
 import org.apache.velocity.Template;
 import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.ResourceNotFoundException;
+import org.apache.velocity.runtime.RuntimeServices;
+import org.apache.velocity.runtime.RuntimeSingleton;
+import org.apache.velocity.runtime.parser.ParseException;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.MethodInvocationException;
 
@@ -57,45 +62,69 @@ public class ProjectService {
 	}
 
 	public void generateProject(Project project) {
-		String repository = "C:\\Users\\Inspiron\\git\\Springboot_components_app\\src\\main\\java\\iamus\\net\\components\\generated\\";
-		String templateText = "";
+		
+		String repository = "/home/laimonas/crud_framework/";
+		//String repository = "C:\\Users\\Inspiron\\git\\Springboot_components_app\\src\\main\\java\\iamus\\net\\components\\generated\\";
 
 		File f = new File(repository + project.getName());
 		f.mkdir();
 
 		for (int i = 0; i < project.getModules().size(); i++) {
 
-			String moduleName = project.getModules().get(i).getName();
 			Module module = project.getModules().get(i);
+			
+			String moduleName = module.getName();
 
 			File mod = new File(repository + project.getName() + "\\"
 					+ Utils.nameToLowerCase(moduleName));
 			mod.mkdir();
 
 			for (int j = 0; j < module.getTemplates().size(); j++) {
+				
+				iamus.net.components.template.Template template = module.getTemplates().get(j);
+				
+				String templateText = template.getText();
 
-				String templateName = project.getModules().get(i).getTemplates().get(j).getName();
+				String templateName = template.getName();
+
+				// ar templeitas skirtas java klasems generuoti?
+				// templeitas turi saugoti duomenis apie prapletima.				
+				String fileName = Utils.nameToUpperCase(templateName) + ".java";
 				
-				templateName = templateName.replaceAll("Component", module.getComponent().getName());
+				//Modulis turi saugoti package informacija.
+				String packagePath = "./src/main/java/iamus/net/";
 				
-				String filepath = "./src/main/java/iamus/net/components/generated/" + project.getName() + "/" + Utils.nameToLowerCase(moduleName) + "/"
-						+ Utils.nameToUpperCase(templateName) + ".java";
-				
-				File temp = new File(filepath);
-				templateText = project.getModules().get(i).getTemplates().get(j).getText();
+				String filepath = packagePath + fileName;
 
 				try {
+					
+					File temp = new File(filepath);
 					temp.createNewFile();
+					
 					FileWriter fr = new FileWriter(temp);
 					fr.write(templateText);
 					fr.close();
 					
+					RuntimeServices rs = RuntimeSingleton.getRuntimeServices();            
+					StringReader sr = new StringReader(templateText);
+					
+					Template vTemplate = new Template();
+					try {
+						vTemplate.setData(rs.parse(sr, "Template name"));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					vTemplate.initDocument();
+					
 					VelocityEngine velocityEngine = new VelocityEngine();
 			    	velocityEngine.init();
 			    	    
-			    	Template t = velocityEngine.getTemplate(filepath);
+			    	//Template t = velocityEngine.getTemplate(filepath);
 			    	     
 			    	VelocityContext context = new VelocityContext();
+			    	
+			    	//Turi pareiti is UI kaip parametrai.
+			    	
 			    	context.put("project", project);
 			    	context.put("properties", module.component.getProperties());
 			    	context.put("module", module);
@@ -106,7 +135,7 @@ public class ProjectService {
 			    	
 			    	FileWriter fileWriter = new FileWriter(temp);
 			    	StringWriter StringWriter = new StringWriter();
-			    	t.merge( context, StringWriter );
+			    	vTemplate.merge(context, StringWriter);
 			    	
 			    	fileWriter.write(StringWriter.toString());
 			    	fileWriter.close();
