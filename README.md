@@ -1,3 +1,4 @@
 "# Springboot_components_app" 
 
-mysql -u username -p database_name < file.sql
+
+mysql -u username -p springboot < springboot.sql
